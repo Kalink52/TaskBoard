@@ -85,7 +85,13 @@ function createTaskCard(task) {
     }
     // $('#todo-cards').append(cardObject)
 
-
+    $(".draggable").draggable({
+        revert: "invalid",
+        zIndex: 100,
+        helper: "clone",
+        cursor: "grab",
+        // appendTo: '.drop'
+    } );
 
 
 // $('#todo-cards').append("Some appended text.")
@@ -93,19 +99,14 @@ function createTaskCard(task) {
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
+
     
+    $('.cards').html("");
     console.log("displaying task?")
     for (let i = 0; i < taskList.length; i++) {
         // console.log(JSON.parse(taskList[i]))
         createTaskCard(JSON.parse(taskList[i]))
 }
-$(".draggable").draggable({
-    revert: "invalid",
-    zIndex: 100,
-    helper: "clone",
-    cursor: "grab",
-    // appendTo: '.drop'
-} );
 
 }
 
@@ -120,10 +121,12 @@ function handleDeleteTask(event){
     console.log( event.target.parentElement.id)
     for (let i = 0; i < taskList.length; i++ ) {
         if(JSON.parse(taskList[i]).uniqID == event.target.parentElement.id) {
-            console.log ('works?')
-            
-            
-~
+            // console.log ('works?')
+            tempTaskList = taskList
+            tempTaskList.splice(i,1)
+            // console.log(tempTaskList)
+            localStorage.setItem("tasks" , JSON.stringify(tempTaskList))
+            renderTaskList()
             return
         }
         else {
@@ -173,8 +176,6 @@ $(".droppable").droppable({
         // .find( ".cards")
         // .append(ui.draggable[0].outerHTML);
 
-
-        $('.cards').html("");
          renderTaskList();
 
     },
