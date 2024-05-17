@@ -41,18 +41,19 @@
             <form>
               <div class="row">
                 <div class="col-6">
-                  <label for="">Task Title</label>
-                  <input type="text">              
+                  <label for="taskTitle">Task Title</label>
+                  <input type="text" name="taskTitle" id="taskName">              
                 </div>
                 <div class="col-6">
                   <!-- need to use jquery date picker -->
-                  <label for="">Task Due date</label>
-                  <input  type="text">              
+                  <label for="taskDueDate">Task Due date</label>
+                  <input  type="text" name="taskDueDate" id="datepicker">              
                 </div>
               </div>
-              <div class="row">
-                <label class="col-12" for="">Task description</label>
-                <input class=" row-3 col-11  mx-3" type="text">  
+              <div class="row"> 
+                <!-- THIS IS STILL A MESS HERE FIX THIS -->
+                <label class="col-12" for="taskDescription">Task description</label>
+                <input class=" row-3 col-11  mx-3" type="text" name="taskDescription" id="taskDescription">  
               </div>
             </form>
           </div>
@@ -72,8 +73,9 @@
           <div class="card-header bg-white">
             <h2 class="card-title mb-1">To Do</h2>
           </div>
-          <div class="card-body bg-light">
-            <div id="todo-cards"></div>
+          <!-- added droppable here??? kind of works -->
+          <div class="card-body bg-light droppable">
+            <div id="todo-cards" class="cards"></div>
           </div>
         </div>
       </div>
@@ -82,8 +84,9 @@
           <div class="card-header bg-white">
             <h2 class="card-title mb-1">In Progress</h2>
           </div>
-          <div class="card-body bg-light">
-            <div id="in-progress-cards"></div>
+          <!-- added droppable here??? kind of works -->
+          <div class="card-body bg-light droppable">
+            <div id="in-progress-cards" class="cards"></div>
           </div>
         </div>
         </div>
@@ -92,8 +95,9 @@
             <div class="card-header bg-white">
               <h2 class="card-title mb-1">Done</h2>
             </div>
-            <div class="card-body bg-light">
-              <div id="done-cards"></div>
+          <!-- added droppable here??? kind of works -->
+            <div class="card-body bg-light droppable">
+              <div id="done-cards" class="cards"></div>
           </div>
           </div>
       </div>
@@ -109,7 +113,7 @@
     integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
 
     <!-- don't know why i have two copies of my css and js but for right now im working outside of the assets folder -->
-  <script src="./js/script.js"></script>
+  <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
