@@ -37,12 +37,30 @@ function generateTaskId() {
 function createTaskCard(task) {
     console.log('creating taskCard')
     // console.log(task)
+    console.log(dayjs())
+    console.log(task.taskDate)
+    console.log(dayjs().isAfter(dayjs(task.taskDate)))
+    
+    let bgColor = "" 
+    
+    if (dayjs().isSame(dayjs(task.taskDate), 'day')) {
+        console.log('yellow')
+        bgColor = "yellow"
+    }else if (dayjs().isAfter(dayjs(task.taskDate))) {
+        console.log('red')
+        bgColor = "red"
+    }else {
+        // not really needed but makes code easier to read
+        console.log('white')
+    }
 
     // hate that i didn't think of this
-    // copied concept from H.S. , 
+    // Got concept from Hannah Schwen , 
+    // repo link for citation purposes
+    // https://github.com/hannahschwen
     // but worked into own code to understand better
     const cardObject =
-    $(`<div class="ui-widget-content draggable" id="${task.uniqID}">
+    $(`<div class="ui-widget-content draggable ${bgColor}" id="${task.uniqID}">
         <p> ${task.taskName} </p>
         <p> ${task.taskDate} </p>
         <p> ${task.taskDescription} </p>
@@ -50,6 +68,8 @@ function createTaskCard(task) {
     </div>
     `
     )
+
+
     //does samething as above but their idea was smaller and prettier
     // cardObject = document.createElement("div")
     // removeButton = document.createElement("button")
@@ -66,24 +86,37 @@ function createTaskCard(task) {
     // cardObject.append(taskObject.taskDescription)
     // cardObject.append(removeButton)
 // console.log(task.taskStatus)
+
     switch (task.taskStatus){
         case 'placeHolder':
             console.log(`you understand Switch cases`)    
             break;
         case 'in-progress-cards':
-            //  \/ this is the problem?
             $('#in-progress-cards').append(cardObject)
             break;
         case 'done-cards':
             $('#done-cards').append(cardObject)
+            cardObject.removeClass("yellow red")
+
             break;
         case 'todo-cards':
             $('#todo-cards').append(cardObject) 
-
-
-
     }
-    // $('#todo-cards').append(cardObject)
+    
+// console.log(dayjs())
+// console.log(task.taskDate)
+// console.log(dayjs().isAfter(dayjs(task.taskDate)))
+//     if (dayjs().isSame(dayjs(task.taskDate), 'day')) {
+//         console.log('red')
+//     }else if (dayjs().isAfter(dayjs(task.taskDate))) {
+//         console.log('yellow')
+//         cardObject.classList.add("yellow")
+//     }else {
+//         console.log('blue')
+//     }
+
+
+
 
     $(".draggable").draggable({
         revert: "invalid",
@@ -106,6 +139,7 @@ function renderTaskList() {
     for (let i = 0; i < taskList.length; i++) {
         // console.log(JSON.parse(taskList[i]))
         createTaskCard(JSON.parse(taskList[i]))
+        
 }
 
 }
