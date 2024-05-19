@@ -245,6 +245,8 @@ $(document).ready(function () {
           taskList.push(JSON.stringify(newTask))
           localStorage.setItem("tasks" , JSON.stringify(taskList))
           createTaskCard(newTask)
+
+          
       });
 
 });
